@@ -1,7 +1,11 @@
-NAME			= miniRT
+NAME			= cube_3d
 
 SRCS_LIST		= \
-					main.c 
+					main.c \
+					error.c \
+					utils.c \
+					parsing.c \
+					check_functions.c
 
 SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 
