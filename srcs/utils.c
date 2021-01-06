@@ -13,6 +13,29 @@ int ft_samestr(char *s1, char *s2)
 	return (1);
 }
 
+int			is_map_line(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str[0] == '\0')
+		return (0);
+	while (str[i])
+	{
+		if (!(isinstr("012 NESW", str[i])))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int			is_correct_path_char(char c)
+{
+	if (ft_isprint(c) && c != ' ')
+		return (1);
+	return (0);
+}
+
 int			atoi_cube(char *str, int *i, int *result)
 {
 	int sign;

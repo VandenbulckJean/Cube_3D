@@ -1,14 +1,29 @@
 #include "cube.h"
+void	check_texture(t_texture texture, char *error)
+{
+	int i;
+
+	i = 0;
+	while (texture.path[i])
+	{
+		if (!(is_correct_path_char(texture.path[i])))
+		{
+			ft_printf("Error: path incorrect for %s texture.", error);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+}
 
 void	check_resolution(char *str, t_cube *cube, int i)
 {
 	while (str[i])
 		if (str[i++] != ' ')
-			handle_error("Resolution line must only contain height and width.");
+			handle_error("Resolution line must only contain height and width.", cube);
 	if (cube->wind.x_res < 1)
-		handle_error("the window width must be a positive number.");
+		handle_error("the window width must be a positive number.", cube);
 	if (cube->wind.y_res < 1)
-		handle_error("the window height must be a positive number.");
+		handle_error("the window height must be a positive number.", cube);
 	/*if (cube->wind.x_res > X_MAX)
 		cube->wind.x_res = X_MAX;
 	if (cube->wind.y_res > Y_MAX)
@@ -40,34 +55,34 @@ void	check_color_value(char *str, t_color color, int i, char *error)
 	}
 }
 
-static void		check_file_name(char *str)
+static void		check_file_name(char *str, t_cube *cube)
 {
 	int len;
 
 	len = (int)ft_strlen(str);
 	if (len < 5)
-		handle_error("File name incorrect");
+		handle_error("File name incorrect", cube);
 	if (str[len-4] != '.' || str[len-3] != 'c' || str[len-2] != 'u' || str[len-1] != 'b')
-		handle_error("File name incorrect");
+		handle_error("File name incorrect", cube);
 }
 
-static void		check_second_argument(char *str)
+static void		check_second_argument(char *str, t_cube *cube)
 {
 	if (!(ft_samestr("--save", str)))
-		handle_error("Second argument must be --save");
+		handle_error("Second argument must be --save", cube);
 }
 
-void				check_arguments(int argc, char*argv[])
+void				check_arguments(int argc, char*argv[], t_cube *cube)
 {
 	if (argc == 1)
-		handle_error("Enter at least an .cub file as first argument");
+		handle_error("Enter at least an .cub file as first argument", cube);
 	if (argc == 2)
-		check_file_name(argv[1]);
+		check_file_name(argv[1], cube);
 	if (argc == 3)
 	{
-		check_file_name(argv[1]);
-		check_second_argument(argv[2]);
+		check_file_name(argv[1], cube);
+		check_second_argument(argv[2], cube);
 	}
 	if (argc > 3)
-		handle_error("Too many arguments");
+		handle_error("Too many arguments", cube);
 }
