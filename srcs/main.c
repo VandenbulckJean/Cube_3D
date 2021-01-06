@@ -1,5 +1,15 @@
 #include "cube.h"
 
+void	getdistance(t_cube	*cube)
+{
+	float angle;
+	float distance;
+
+	distance = 0;
+	angle = cube->pos.orientation + cube->fov / 2;
+
+}
+
 void	createnextimg(t_cube *cube)
 {
 	cube->next_img.ptr = mlx_new_image(cube->ptr, cube->wind.x_res, cube->wind.y_res);
@@ -18,6 +28,7 @@ int main(int argc, char *argv[])
 {
 	t_cube	cube;
 
+	cube.fov = 180;
 	check_arguments(argc, argv, &cube);
 	cube.filename = ft_strdup(argv[1]);
 	if (!(cube.ptr = mlx_init()))

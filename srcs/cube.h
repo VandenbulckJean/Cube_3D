@@ -54,6 +54,7 @@ typedef struct		s_cube
 {
 	void			*ptr;
 	char			*filename;
+	int				fov;
 	t_window		wind;
 	t_color			floor;
 	t_color			ceiling;
