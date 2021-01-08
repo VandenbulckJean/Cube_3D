@@ -185,18 +185,38 @@ void			get_map(t_cube *cube)
 
 void			get_pos(t_cube *cube, int x, int y, char c)
 {
-	if (cube->pos.x != -1 || cube->pos.y != -1)
+	if (cube->cam.pos.x != -1 || cube->cam.pos.y != -1)
 		handle_error("there can be only one starting point", cube);
-	cube->pos.x = (float)x + 0.5;
-	cube->pos.y = (float)y + 0.5;
+	cube->cam.pos.x = (double)x + 0.5;
+	cube->cam.pos.y = (double)y + 0.5;
 	if (c == 'N')
-		cube->pos.orientation = 90;
+	{
+		cube->cam.direction.x = 0;
+		cube->cam.direction.y = -1;
+		cube->cam.plane.x = 0.66;
+		cube->cam.plane.y = 0;
+	}
 	if (c == 'S')
-		cube->pos.orientation = 270;
+	{
+		cube->cam.direction.x = 0;
+		cube->cam.direction.y = 1;
+		cube->cam.plane.x = -0.66;
+		cube->cam.plane.y = 0;
+	}
 	if (c == 'E')
-		cube->pos.orientation = 0;
+	{
+		cube->cam.direction.x = 1;
+		cube->cam.direction.y = 0;
+		cube->cam.plane.x = 0;
+		cube->cam.plane.y = 0.66;
+	}
 	if (c == 'W')
-		cube->pos.orientation = 180;
+	{
+		cube->cam.direction.x = -1;
+		cube->cam.direction.y = 0;
+		cube->cam.plane.x = 0;
+		cube->cam.plane.y = -0.66;
+	}
 }
 
 void			get_nsew(t_cube *cube)
@@ -205,8 +225,8 @@ void			get_nsew(t_cube *cube)
 	int x;
 
 	y = 0;
-	cube->pos.x = -1;
-	cube->pos.y = -1;
+	cube->cam.pos.x = -1;
+	cube->cam.pos.y = -1;
 	while(y < cube->map.line)
 	{
 		x = 0;
@@ -218,7 +238,7 @@ void			get_nsew(t_cube *cube)
 		}
 		y++;
 	}
-	if (cube->pos.x == -1)
+	if (cube->cam.pos.x == -1)
 		handle_error("You must add a starting point in map", cube);
 }
 

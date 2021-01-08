@@ -32,21 +32,50 @@ typedef struct		s_img
 	int				endian;
 }					t_img;
 
-typedef struct		s_pos
+typedef struct		s_vecteur
 {
-	float			x;
-	float			y;
-	float			orientation;
-}					t_pos;
+	double			x;
+	double			y;
+}					t_vecteur;
 
 typedef struct 		s_texture
 {
 	char			*path;
 }					t_texture;
 
+typedef struct		s_keyboard
+{
+	int				w_pressed;
+	int				a_pressed;
+	int				s_pressed;
+	int				d_pressed;
+}					t_keyboard;
+
+typedef struct		s_cam
+{
+	t_vecteur		pos;
+	t_vecteur		direction;
+	t_vecteur		plane;
+	t_vecteur		raydir;
+	t_vecteur		deltadist;
+	t_vecteur		sidedist;
+	t_keyboard		event;
+	double			walldist;
+	double			camx;
+	t_vecteur		step;
+	int				objectheight;
+	int				objectstart;
+	int				objectend;
+	int				side;
+	int				p_stripe;
+	int				hit;
+
+}					t_cam;
+
 typedef struct		s_map
 {
 	char 			**map;
+	t_vecteur		pos;
 	int				line;
 }					t_map;
 
@@ -63,8 +92,8 @@ typedef struct		s_cube
 	t_texture		east;
 	t_texture		west;
 	t_texture		sprite;
-	t_pos			pos;
 	t_map			map;
+	t_cam			cam;
 	t_img			current_img;
 	t_img			next_img;
 }					t_cube;
