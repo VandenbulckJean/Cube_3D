@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "../include/cube.h"
 
 void	destroy_map(t_cube *cube)
 {
@@ -14,6 +14,9 @@ void	destroy_map(t_cube *cube)
 	if (cube->map.map)
 		free(cube->map.map);
 }
+
+//destroy img (texture + screen)
+//destroy window
 
 void	free_texture_path(t_cube *cube)
 {

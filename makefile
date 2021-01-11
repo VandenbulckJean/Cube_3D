@@ -9,7 +9,8 @@ SRCS_LIST		= \
 					event.c \
 					initialisation.c \
 					raycasting.c \
-					raycastingbis.c
+					raycastingbis.c \
+					movement.c
 
 SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 
@@ -51,5 +52,8 @@ fclean:			clean
 				@make fclean -C $(LIBFT)
 
 re:				fclean all
+
+run:			all
+				./cube_3d test.cub
 
 .PHONY: 		all fclean clean re

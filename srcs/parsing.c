@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "../include/cube.h"
 
 void	getcolorvalue(char *str, int *i, t_color *color, char *error)
 {

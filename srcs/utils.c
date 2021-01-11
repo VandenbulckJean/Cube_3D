@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "../include/cube.h"
 
 int ft_samestr(char *s1, char *s2)
 {
@@ -74,4 +74,11 @@ void	set_pixel_color(t_cube *cube, int pixelpos, t_color color)
 	cube->next_img.address[pixelpos] = color.b;
 	cube->next_img.address[pixelpos + 1] = color.g;
 	cube->next_img.address[pixelpos + 2] = color.r;
+}
+
+void	refreshscreen(t_cube *cube)
+{
+	if (cube->wind.ptr)
+		mlx_clear_window(cube->ptr, cube->wind.ptr);
+	raycasting(cube);
 }

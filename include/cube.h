@@ -8,8 +8,9 @@
 #include <math.h>
 #include "../minilibx_metal/mlx.h"
 #include "../libft_19/libft_bonus.h"
-# define Speed 0.1
-# define Alpha 0.2
+# define Speed 0.08
+# define Alpha 0.1
+# define Glitchdist 0.2
 
 typedef	struct		s_color
 {
@@ -43,6 +44,9 @@ typedef struct		s_vecteur
 typedef struct 		s_texture
 {
 	char			*path;
+	void			*imgptr;
+	int				width;
+	int				height;
 }					t_texture;
 
 typedef struct		s_keyboard
@@ -72,6 +76,8 @@ typedef struct		s_cam
 	int				side;
 	int				p_stripe;
 	int				hit;
+	double			texturexhit;
+	double			textureyhit;
 
 }					t_cam;
 
@@ -125,6 +131,7 @@ void	get_object_limits(t_cube *cube);
 void	draw_stripe(t_cube *cube);
 void	raycasting(t_cube *cube);
 void	rotation_pov(t_cube *cube, int is_left);
+void	refreshscreen(t_cube *cube);
 
 //init
 void	initialisation(t_cube *cube);
@@ -133,6 +140,13 @@ void	initialisation(t_cube *cube);
 void	event_loop(t_cube *cube);
 void	handle_exit(t_cube *cube);
 
+//movement
+void	move_forward(t_cube *cube);
+void	move_backward(t_cube *cube);
+void	starfleft(t_cube *cube);
+void	strafright(t_cube *cube);
+
+void	get_texture_hit_x(t_cube *cube, t_texture texture);
 
 
 #endif

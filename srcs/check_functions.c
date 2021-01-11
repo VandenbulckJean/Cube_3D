@@ -1,4 +1,5 @@
-#include "cube.h"
+#include "../include/cube.h"
+
 void	check_texture(t_texture texture, char *error)
 {
 	int i;
