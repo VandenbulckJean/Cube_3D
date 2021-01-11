@@ -68,3 +68,10 @@ int			atoi_cube(char *str, int *i, int *result)
 		return (0);
 	return (1);
 }
+
+void	set_pixel_color(t_cube *cube, int pixelpos, t_color color)
+{
+	cube->next_img.address[pixelpos] = color.b;
+	cube->next_img.address[pixelpos + 1] = color.g;
+	cube->next_img.address[pixelpos + 2] = color.r;
+}

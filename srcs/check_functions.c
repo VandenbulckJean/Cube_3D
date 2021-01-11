@@ -64,6 +64,9 @@ static void		check_file_name(char *str, t_cube *cube)
 		handle_error("File name incorrect", cube);
 	if (str[len-4] != '.' || str[len-3] != 'c' || str[len-2] != 'u' || str[len-1] != 'b')
 		handle_error("File name incorrect", cube);
+	if (!(cube->filename = ft_strdup(str)))
+		handle_error("malloc filename", cube);
+
 }
 
 static void		check_second_argument(char *str, t_cube *cube)

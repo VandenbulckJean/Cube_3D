@@ -2,10 +2,14 @@ NAME			= cube_3d
 
 SRCS_LIST		= \
 					main.c \
-					error.c \
+					exit.c \
 					utils.c \
 					parsing.c \
-					check_functions.c
+					check_functions.c \
+					event.c \
+					initialisation.c \
+					raycasting.c \
+					raycastingbis.c
 
 SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 

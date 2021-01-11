@@ -8,6 +8,8 @@
 #include <math.h>
 #include "../minilibx_metal/mlx.h"
 #include "../libft_19/libft_bonus.h"
+# define Speed 0.1
+# define Alpha 0.2
 
 typedef	struct		s_color
 {
@@ -49,6 +51,8 @@ typedef struct		s_keyboard
 	int				a_pressed;
 	int				s_pressed;
 	int				d_pressed;
+	int				right_arow_pressed;
+	int				left_arrow_pressed;
 }					t_keyboard;
 
 typedef struct		s_cam
@@ -59,7 +63,6 @@ typedef struct		s_cam
 	t_vecteur		raydir;
 	t_vecteur		deltadist;
 	t_vecteur		sidedist;
-	t_keyboard		event;
 	double			walldist;
 	double			camx;
 	t_vecteur		step;
@@ -83,7 +86,6 @@ typedef struct		s_cube
 {
 	void			*ptr;
 	char			*filename;
-	int				fov;
 	t_window		wind;
 	t_color			floor;
 	t_color			ceiling;
@@ -96,6 +98,7 @@ typedef struct		s_cube
 	t_cam			cam;
 	t_img			current_img;
 	t_img			next_img;
+	t_keyboard		event;
 }					t_cube;
 
 //utils
@@ -104,6 +107,7 @@ int					ft_samestr(char *s1, char *s2);
 int					atoi_cube(char *str, int *i, int *result);
 int					is_correct_path_char(char c);
 int					is_map_line(char *str);
+void				set_pixel_color(t_cube *cube, int pixelpos, t_color color);
 
 //checks
 
@@ -115,6 +119,20 @@ void				check_texture(t_texture texture, char *error);
 //parsing
 
 void					parsing_file(t_cube *cube);
+
+//Raycasting
+void	get_object_limits(t_cube *cube);
+void	draw_stripe(t_cube *cube);
+void	raycasting(t_cube *cube);
+void	rotation_pov(t_cube *cube, int is_left);
+
+//init
+void	initialisation(t_cube *cube);
+
+//event
+void	event_loop(t_cube *cube);
+void	handle_exit(t_cube *cube);
+
 
 
 #endif
