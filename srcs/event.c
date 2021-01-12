@@ -9,7 +9,7 @@ int	check_event(t_cube *cube)
 	if (cube->event.d_pressed)
 		strafright(cube);
 	if (cube->event.a_pressed)
-		starfleft(cube);
+		strafleft(cube);
 	if (cube->event.right_arow_pressed)
 		rotation_pov(cube, 0);
 	if (cube->event.left_arrow_pressed)

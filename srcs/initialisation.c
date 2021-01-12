@@ -1,17 +1,32 @@
 #include "../include/cube.h"
 
+void	init_texture(t_cube *cube)
+{
+	if (!(cube->north.img.address = (unsigned char*)mlx_get_data_addr(cube->north.img.ptr, &cube->north.img.bpp, &cube->north.img.size_line, &cube->north.img.endian)))
+		handle_error("can't get north texture data", cube);
+	if (!(cube->south.img.address = (unsigned char*)mlx_get_data_addr(cube->south.img.ptr, &cube->south.img.bpp, &cube->south.img.size_line, &cube->south.img.endian)))
+		handle_error("can't get south texture data", cube);
+	if (!(cube->west.img.address = (unsigned char*)mlx_get_data_addr(cube->west.img.ptr, &cube->west.img.bpp, &cube->west.img.size_line, &cube->west.img.endian)))
+		handle_error("can't get west texture data", cube);
+	if (!(cube->east.img.address = (unsigned char*)mlx_get_data_addr(cube->east.img.ptr, &cube->east.img.bpp, &cube->east.img.size_line, &cube->east.img.endian)))
+		handle_error("can't get east texture data", cube);
+	if (!(cube->sprite.img.address = (unsigned char*)mlx_get_data_addr(cube->sprite.img.ptr, &cube->sprite.img.bpp, &cube->sprite.img.size_line, &cube->sprite.img.endian)))
+		handle_error("can't get sprite texture data", cube);
+}
+
 void	load_textures(t_cube *cube)
 {
-	if (!(cube->north.imgptr = mlx_xpm_file_to_image(cube->ptr, cube->north.path, &cube->north.width, &cube->north.height)))
+	if (!(cube->north.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->north.path, &cube->north.width, &cube->north.height)))
 		handle_error("can't load north texture", cube);
-	if (!(cube->south.imgptr = mlx_xpm_file_to_image(cube->ptr, cube->south.path, &cube->south.width, &cube->south.height)))
+	if (!(cube->south.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->south.path, &cube->south.width, &cube->south.height)))
 		handle_error("can't load south texture", cube);
-	if (!(cube->west.imgptr = mlx_xpm_file_to_image(cube->ptr, cube->west.path, &cube->west.width, &cube->west.height)))
+	if (!(cube->west.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->west.path, &cube->west.width, &cube->west.height)))
 		handle_error("can't load west texture", cube);
-	if (!(cube->east.imgptr = mlx_xpm_file_to_image(cube->ptr, cube->east.path, &cube->east.width, &cube->east.height)))
+	if (!(cube->east.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->east.path, &cube->east.width, &cube->east.height)))
 		handle_error("can't load east texture", cube);
-	if (!(cube->sprite.imgptr = mlx_xpm_file_to_image(cube->ptr, cube->sprite.path, &cube->sprite.width, &cube->sprite.height)))
+	if (!(cube->sprite.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->sprite.path, &cube->sprite.width, &cube->sprite.height)))
 		handle_error("can't load sprite texture", cube);
+	init_texture(cube);
 }
 
 void	init_event_key(t_cube *cube)

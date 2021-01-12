@@ -57,26 +57,17 @@ void	get_hit_pos(t_cube *cube)
 	}
 }
 
-void	get_texture_hit_x(t_cube *cube, t_texture texture)
-{
-	cube->cam.texturexhit -= floor(cube->cam.texturexhit);
-	cube->cam.texturexhit = texture.width * cube->cam.texturexhit;
-	printf("%f\n", cube->cam.texturexhit);
-}
-
 void	get_hit_distance(t_cube *cube)
 {
 	if (cube->cam.side == 0)
 	{
 		cube->cam.walldist = (cube->map.pos.x - cube->cam.pos.x +
 						(1 - (int)cube->cam.step.x) / 2) / cube->cam.raydir.x;
-		cube->cam.texturexhit = cube->cam.pos.y + cube->cam.walldist * cube->cam.direction.y;
 	}
 	else
 	{
 		cube->cam.walldist = (cube->map.pos.y - cube->cam.pos.y +
-							(1 - cube->cam.step.y) / 2) / cube->cam.raydir.y;
-		cube->cam.texturexhit = cube->cam.pos.x + cube->cam.walldist * cube->cam.direction.x;
+							(1 - (int)cube->cam.step.y) / 2) / cube->cam.raydir.y;
 	}
 }
 

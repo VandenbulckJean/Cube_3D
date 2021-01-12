@@ -44,9 +44,12 @@ typedef struct		s_vecteur
 typedef struct 		s_texture
 {
 	char			*path;
-	void			*imgptr;
+	t_img			img;
 	int				width;
 	int				height;
+	int				hitx;
+	double 			hity;
+	double			step;
 }					t_texture;
 
 typedef struct		s_keyboard
@@ -76,8 +79,7 @@ typedef struct		s_cam
 	int				side;
 	int				p_stripe;
 	int				hit;
-	double			texturexhit;
-	double			textureyhit;
+	double			wallhitx;
 
 }					t_cam;
 
@@ -143,10 +145,7 @@ void	handle_exit(t_cube *cube);
 //movement
 void	move_forward(t_cube *cube);
 void	move_backward(t_cube *cube);
-void	starfleft(t_cube *cube);
+void	strafleft(t_cube *cube);
 void	strafright(t_cube *cube);
-
-void	get_texture_hit_x(t_cube *cube, t_texture texture);
-
 
 #endif

@@ -20,21 +20,21 @@ void	move_backward(t_cube *cube)
 	refreshscreen(cube);
 }
 
-void	starfleft(t_cube *cube)
+void	strafleft(t_cube *cube)
 {
-	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x + cube->cam.direction.y * Speed + (cube->cam.direction.x > 0 ? Glitchdist  : -Glitchdist))] != '1')
+	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x + cube->cam.direction.y * Speed + (cube->cam.direction.y > 0 ? Glitchdist  : -Glitchdist))] != '1')
 			cube->cam.pos.x += cube->cam.direction.y * Speed;
-	if (cube->map.map[(int)(cube->cam.pos.y + cube->cam.direction.x * Speed + (cube->cam.direction.y > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
-			cube->cam.pos.y += -cube->cam.direction.x * Speed;
+	if (cube->map.map[(int)(cube->cam.pos.y - cube->cam.direction.x * Speed - (cube->cam.direction.x > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
+			cube->cam.pos.y -= cube->cam.direction.x * Speed;
 	cube->event.a_pressed = 0;
 	refreshscreen(cube);
 }
 
 void	strafright(t_cube *cube)
 {
-	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x - cube->cam.direction.y * Speed - (cube->cam.direction.x > 0 ? Glitchdist  : -Glitchdist))] != '1')
-			cube->cam.pos.x += -cube->cam.direction.y * Speed;
-	if (cube->map.map[(int)(cube->cam.pos.y - cube->cam.direction.x * Speed - (cube->cam.direction.y > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
+	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x - cube->cam.direction.y * Speed - (cube->cam.direction.y > 0 ? Glitchdist  : -Glitchdist))] != '1')
+			cube->cam.pos.x -= cube->cam.direction.y * Speed;
+	if (cube->map.map[(int)(cube->cam.pos.y + cube->cam.direction.x * Speed + (cube->cam.direction.x > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
 			cube->cam.pos.y += cube->cam.direction.x * Speed;
 	cube->event.d_pressed = 0;
 	refreshscreen(cube);

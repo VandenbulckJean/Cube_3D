@@ -78,7 +78,5 @@ void	set_pixel_color(t_cube *cube, int pixelpos, t_color color)
 
 void	refreshscreen(t_cube *cube)
 {
-	if (cube->wind.ptr)
-		mlx_clear_window(cube->ptr, cube->wind.ptr);
 	raycasting(cube);
 }
