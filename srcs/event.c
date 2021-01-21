@@ -2,6 +2,10 @@
 
 int	check_event(t_cube *cube)
 {
+	if (cube->event.right_arow_pressed && cube->event.w_pressed)
+	{
+		printf("coucou\n");
+	}
 	if (cube->event.w_pressed)
 		move_forward(cube);
 	if (cube->event.s_pressed)

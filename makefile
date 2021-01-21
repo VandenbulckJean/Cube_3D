@@ -10,7 +10,8 @@ SRCS_LIST		= \
 					initialisation.c \
 					raycasting.c \
 					raycastingbis.c \
-					movement.c
+					movement.c \
+					sprites.c
 
 SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 

@@ -76,7 +76,53 @@ void	set_pixel_color(t_cube *cube, int pixelpos, t_color color)
 	cube->next_img.address[pixelpos + 2] = color.r;
 }
 
+void	set_samepixelcolor(t_cube *cube, int pixelpos, t_texture *texture)
+{
+	int pixelpos_texture;
+	texture->hity += texture->step;
+	pixelpos_texture = texture->hitx * texture->img.bpp / 8 + texture->img.size_line * (int)texture->hity;
+	cube->next_img.address[pixelpos] = texture->img.address[pixelpos_texture];
+	cube->next_img.address[pixelpos + 1] = texture->img.address[pixelpos_texture + 1];
+	cube->next_img.address[pixelpos + 2] = texture->img.address[pixelpos_texture + 2];
+}
+
+void	draw_wall_texture(t_cube *cube)
+{
+	int pixelpos;
+	int i;
+
+	i = cube->cam.objectstart;
+	while (i < cube->cam.objectend)
+	{
+		pixelpos = cube->cam.p_stripe * cube->next_img.bpp / 8 + cube->next_img.size_line * i;
+		if (cube->cam.side == 0 && cube->cam.raydir.x < 0)
+		{
+			set_samepixelcolor(cube, pixelpos, &cube->west);
+		}
+		else if (cube->cam.side == 0 && cube->cam.raydir.x > 0)
+		{
+			set_samepixelcolor(cube, pixelpos, &cube->east);
+		}
+		else if (cube->cam.side == 1 && cube->cam.raydir.y < 0)
+		{
+			set_samepixelcolor(cube, pixelpos, &cube->north);
+		}
+		else if (cube->cam.side == 1 && cube->cam.raydir.y > 0)
+		{
+			set_samepixelcolor(cube, pixelpos, &cube->south);
+		}
+		i++;
+	}	
+}
+
 void	refreshscreen(t_cube *cube)
 {
 	raycasting(cube);
+}
+
+int	is_space(char c)
+{
+	if (c == 32 || (9 <= c && c <= 13))
+		return (1);
+	return (0);
 }

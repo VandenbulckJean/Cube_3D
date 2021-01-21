@@ -1,5 +1,22 @@
 #include "../include/cube.h"
 
+static void		get_resolution(char *str, t_cube *cube)
+{
+	int i;
+
+	i = 1;
+	if (!(atoi_cube(str, &i, &cube->wind.x_res)))
+		handle_error("Please enter height and width for window.\nBoth being positive entire numbers.", cube);
+	if (!(atoi_cube(str, &i, &cube->wind.y_res)))
+		handle_error("Please enter height for window. It must be a positive entire number.", cube);
+	check_resolution(str, cube, i);
+}
+
+//
+//
+//
+//
+
 void	getcolorvalue(char *str, int *i, t_color *color, char *error)
 {
 	if (!(atoi_cube(str, i, &color->r)))
@@ -23,14 +40,25 @@ void	getcolorvalue(char *str, int *i, t_color *color, char *error)
 	}
 }
 
+void			check_path(t_texture texture, t_cube *cube)
+{
+	int len;
+
+	len = ft_strlen(texture.path);
+	if (texture.path[len - 1] != 'm' || texture.path[len - 2] != 'p' || texture.path[len - 3] != 'x' || texture.path[len - 4] != '.')
+		handle_error("please enter xpm file for every texture.", cube);
+
+}
+
 static void		get_path(char *str, t_texture *texture)
 {
 	int i;
 
 	i = 2;
-	while (str[i] == ' ')
+	while (is_space(str[i]))
 		i++;
 	texture->path = ft_strdup(str + i);
+	//checkpath
 }
 
 static void		get_color_floor(char *str, t_cube *cube)
@@ -49,18 +77,6 @@ static void		get_color_ceiling(char *str, t_cube *cube)
 	i = 1;
 	getcolorvalue(str, &i, &cube->ceiling, "ceiling line");
 	check_color_value(str, cube->ceiling, i, "ceiling");
-}
-
-static void		get_resolution(char *str, t_cube *cube)
-{
-	int i;
-
-	i = 1;
-	if (!(atoi_cube(str, &i, &cube->wind.x_res)))
-		handle_error("Please enter height and width for window.\nBoth being positive entire numbers.", cube);
-	if (!(atoi_cube(str, &i, &cube->wind.y_res)))
-		handle_error("Please enter height for window. It must be a positive entire number.", cube);
-	check_resolution(str, cube, i);
 }
 
 static void		get_no_texture(char *str, t_cube *cube)
@@ -89,43 +105,62 @@ static void		get_ea_texture(char *str, t_cube *cube)
 
 static void		get_sprite_texture(char *str, t_cube *cube)
 {
-	get_path(str, &cube->sprite);
-	check_texture(cube->sprite, "sprite");
+	get_path(str, &cube->sprite.texture);
+	check_texture(cube->sprite.texture, "sprite");
+}
+
+int				is_empty_line(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(is_space(str[i])))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 static void		get_data(char *filedata, t_cube *cube)
 {
-	if (filedata[0] == 'R')
+	if (filedata[0] == 'R' && is_space(filedata[1]))
 		get_resolution(filedata, cube);
-	if (filedata[0] == 'F')
+	else if (filedata[0] == 'F' && is_space(filedata[1]))
 		get_color_floor(filedata, cube);
-	if (filedata[0] == 'C')
+	else if (filedata[0] == 'C' && is_space(filedata[1]))
 		get_color_ceiling(filedata, cube);
-	if (filedata[0] == 'N' && filedata[1] == 'O')
+	else if (filedata[0] == 'N' && filedata[1] == 'O' && is_space(filedata[2]))
 		get_no_texture(filedata, cube);
-	if (filedata[0] == 'S' && filedata[1] == 'O')
+	else if (filedata[0] == 'S' && filedata[1] == 'O' && is_space(filedata[2]))
 		get_so_texture(filedata, cube);
-	if (filedata[0] == 'W' && filedata[1] == 'E')
+	else if (filedata[0] == 'W' && filedata[1] == 'E' && is_space(filedata[2]))
 		get_we_texture(filedata, cube);
-	if (filedata[0] == 'E' && filedata[1] == 'A')
+	else if (filedata[0] == 'E' && filedata[1] == 'A' && is_space(filedata[2]))
 		get_ea_texture(filedata, cube);
-	if (filedata[0] == 'S')
+	else if (filedata[0] == 'S' && is_space(filedata[1]))
 		get_sprite_texture(filedata, cube);
+	else
+	{
+		if (!(is_empty_line(filedata)))
+			handle_error(".cub file contain unreadable line", cube);	
+	}
 }
 
 void			data_parsing(t_cube *cube, char *filedata, int *i, int fd)
 {
 	if (!(is_map_line(filedata)) && *i)
-		{
-			free(filedata);
-			close(fd);
-			handle_error("map entry incorrect.", cube);
-		}
-		get_data(filedata, cube);
-		if (is_map_line(filedata))
-			(*i)++;
-		if (filedata)
-			free(filedata);
+	{
+		free(filedata);
+		close(fd);
+		handle_error("map entry incorrect.", cube);
+	}
+	get_data(filedata, cube);
+	if (is_map_line(filedata))
+		(*i)++;
+	if (filedata)
+		free(filedata);
 }
 
 void				get_map_line(t_cube *cube)

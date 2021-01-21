@@ -62,13 +62,14 @@ void	get_hit_distance(t_cube *cube)
 	if (cube->cam.side == 0)
 	{
 		cube->cam.walldist = (cube->map.pos.x - cube->cam.pos.x +
-						(1 - (int)cube->cam.step.x) / 2) / cube->cam.raydir.x;
+			(1 - (int)cube->cam.step.x) / 2) / cube->cam.raydir.x;
 	}
 	else
 	{
 		cube->cam.walldist = (cube->map.pos.y - cube->cam.pos.y +
-							(1 - (int)cube->cam.step.y) / 2) / cube->cam.raydir.y;
+			(1 - (int)cube->cam.step.y) / 2) / cube->cam.raydir.y;
 	}
+	cube->cam.distbuffer[cube->cam.p_stripe] = cube->cam.walldist;
 }
 
 void	raycasting(t_cube *cube)
@@ -81,8 +82,10 @@ void	raycasting(t_cube *cube)
 		get_hit_pos(cube);
 		get_hit_distance(cube);
 		get_object_limits(cube);
+		get_wall_hit_x(cube);
 		draw_stripe(cube);
 		cube->cam.p_stripe++;
 	}
+	do_sprites(cube);
 	mlx_put_image_to_window(cube->ptr, cube->wind.ptr, cube->next_img.ptr, 0, 0);
 }

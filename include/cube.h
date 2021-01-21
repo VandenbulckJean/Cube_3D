@@ -8,7 +8,7 @@
 #include <math.h>
 #include "../minilibx_metal/mlx.h"
 #include "../libft_19/libft_bonus.h"
-# define Speed 0.08
+# define Speed 0.1
 # define Alpha 0.1
 # define Glitchdist 0.2
 
@@ -62,6 +62,26 @@ typedef struct		s_keyboard
 	int				left_arrow_pressed;
 }					t_keyboard;
 
+typedef struct		s_sprite
+{
+	t_vecteur		*tab;
+	int				*order;
+	int				amount;
+	t_vecteur		campos;
+	double			invdet;
+	int				stripe;
+	int				height;
+	int				width;
+	int				centerstripe;
+	t_vecteur		transform;
+	int				startx;
+	int				starty;
+	int				endx;
+	int				endy;
+	t_texture		texture;
+
+}					t_sprite;
+
 typedef struct		s_cam
 {
 	t_vecteur		pos;
@@ -70,6 +90,7 @@ typedef struct		s_cam
 	t_vecteur		raydir;
 	t_vecteur		deltadist;
 	t_vecteur		sidedist;
+	double			*distbuffer;
 	double			walldist;
 	double			camx;
 	t_vecteur		step;
@@ -101,8 +122,8 @@ typedef struct		s_cube
 	t_texture		south;
 	t_texture		east;
 	t_texture		west;
-	t_texture		sprite;
 	t_map			map;
+	t_sprite		sprite;
 	t_cam			cam;
 	t_img			current_img;
 	t_img			next_img;
@@ -116,6 +137,9 @@ int					atoi_cube(char *str, int *i, int *result);
 int					is_correct_path_char(char c);
 int					is_map_line(char *str);
 void				set_pixel_color(t_cube *cube, int pixelpos, t_color color);
+void				set_samepixelcolor(t_cube *cube, int pixelpos, t_texture *texture);
+void				draw_wall_texture(t_cube *cube);
+int					is_space(char c);
 
 //checks
 
@@ -126,26 +150,30 @@ void				check_texture(t_texture texture, char *error);
 
 //parsing
 
-void					parsing_file(t_cube *cube);
+void				parsing_file(t_cube *cube);
 
 //Raycasting
-void	get_object_limits(t_cube *cube);
-void	draw_stripe(t_cube *cube);
-void	raycasting(t_cube *cube);
-void	rotation_pov(t_cube *cube, int is_left);
-void	refreshscreen(t_cube *cube);
+void				get_object_limits(t_cube *cube);
+void				draw_stripe(t_cube *cube);
+void				raycasting(t_cube *cube);
+void				rotation_pov(t_cube *cube, int is_left);
+void				refreshscreen(t_cube *cube);
+void				get_wall_hit_x(t_cube *cube);
 
 //init
-void	initialisation(t_cube *cube);
+void				initialisation(t_cube *cube);
 
 //event
-void	event_loop(t_cube *cube);
-void	handle_exit(t_cube *cube);
+void				event_loop(t_cube *cube);
+void				handle_exit(t_cube *cube);
 
 //movement
-void	move_forward(t_cube *cube);
-void	move_backward(t_cube *cube);
-void	strafleft(t_cube *cube);
-void	strafright(t_cube *cube);
+void				move_forward(t_cube *cube);
+void				move_backward(t_cube *cube);
+void				strafleft(t_cube *cube);
+void				strafright(t_cube *cube);
 
+//sprite
+void	initialise_sprites(t_cube *cube);
+void	do_sprites(t_cube *cube);
 #endif

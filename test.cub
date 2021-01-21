@@ -1,19 +1,19 @@
-R 1920 1080
+R 170000 2345
 
-NO ./texture/bluestone.xpm
-SO ./texture/greystone.xpm
-WE ./texture/greystone.xpm
-EA ./texture/greystone.xpm
+NO ./texture/redbrick.xpm
+SO ./texture/wood.xpm
+WE ./texture/colorstone.xpm
+EA ./texture/bluestone.xpm
 
-S ./texture/greystone.xpm
-F 220,100,0
-C 225,30,0
+S ./texture/barrel.xpm
+F 225,225,225
+C 0,0,0
 
 11111111
-10001001
-10000011
-11000001
-10000001
-1000W001
-10000001
+122N1001
+10000011111
+11000001001
+10000001001
+10200000001
+10002001111
 11111111

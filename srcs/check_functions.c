@@ -18,6 +18,10 @@ void	check_texture(t_texture texture, char *error)
 
 void	check_resolution(char *str, t_cube *cube, int i)
 {
+	int x;
+	int y;
+	
+	mlx_get_screen_size(cube->ptr, &x, &y);
 	while (str[i])
 		if (str[i++] != ' ')
 			handle_error("Resolution line must only contain height and width.", cube);
@@ -25,10 +29,10 @@ void	check_resolution(char *str, t_cube *cube, int i)
 		handle_error("the window width must be a positive number.", cube);
 	if (cube->wind.y_res < 1)
 		handle_error("the window height must be a positive number.", cube);
-	/*if (cube->wind.x_res > X_MAX)
-		cube->wind.x_res = X_MAX;
-	if (cube->wind.y_res > Y_MAX)
-		cube->wind.y_res = Y_MAX;*/
+	if (cube->wind.x_res > x)
+		cube->wind.x_res = x;
+	if (cube->wind.y_res > y)
+		cube->wind.y_res = y;
 }
 
 void	check_color_value(char *str, t_color color, int i, char *error)

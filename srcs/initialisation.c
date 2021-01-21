@@ -10,12 +10,14 @@ void	init_texture(t_cube *cube)
 		handle_error("can't get west texture data", cube);
 	if (!(cube->east.img.address = (unsigned char*)mlx_get_data_addr(cube->east.img.ptr, &cube->east.img.bpp, &cube->east.img.size_line, &cube->east.img.endian)))
 		handle_error("can't get east texture data", cube);
-	if (!(cube->sprite.img.address = (unsigned char*)mlx_get_data_addr(cube->sprite.img.ptr, &cube->sprite.img.bpp, &cube->sprite.img.size_line, &cube->sprite.img.endian)))
+	if (!(cube->sprite.texture.img.address = (unsigned char*)mlx_get_data_addr(cube->sprite.texture.img.ptr, &cube->sprite.texture.img.bpp, &cube->sprite.texture.img.size_line, &cube->sprite.texture.img.endian)))
 		handle_error("can't get sprite texture data", cube);
 }
 
 void	load_textures(t_cube *cube)
 {
+	if (!(cube->cam.distbuffer = malloc(sizeof(double) * cube->wind.x_res)))
+		handle_error("can't malloc distance buffer", cube);
 	if (!(cube->north.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->north.path, &cube->north.width, &cube->north.height)))
 		handle_error("can't load north texture", cube);
 	if (!(cube->south.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->south.path, &cube->south.width, &cube->south.height)))
@@ -24,7 +26,7 @@ void	load_textures(t_cube *cube)
 		handle_error("can't load west texture", cube);
 	if (!(cube->east.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->east.path, &cube->east.width, &cube->east.height)))
 		handle_error("can't load east texture", cube);
-	if (!(cube->sprite.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->sprite.path, &cube->sprite.width, &cube->sprite.height)))
+	if (!(cube->sprite.texture.img.ptr = mlx_xpm_file_to_image(cube->ptr, cube->sprite.texture.path, &cube->sprite.texture.width, &cube->sprite.texture.height)))
 		handle_error("can't load sprite texture", cube);
 	init_texture(cube);
 }
@@ -49,5 +51,6 @@ void	initialisation(t_cube *cube)
 	cube->next_img.ptr = mlx_new_image(cube->ptr, cube->wind.x_res, cube->wind.y_res);
 	cube->next_img.address = (unsigned char*)mlx_get_data_addr(cube->next_img.ptr, &cube->next_img.bpp, &cube->next_img.size_line, &cube->next_img.endian);
 	load_textures(cube);
+	initialise_sprites(cube);
 	raycasting(cube);
 }

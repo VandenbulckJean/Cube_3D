@@ -28,8 +28,8 @@ void	free_texture_path(t_cube *cube)
 		free(cube->west.path);
 	if (cube->east.path)
 		free(cube->east.path);
-	if (cube->sprite.path)
-		free(cube->sprite.path);
+	if (cube->sprite.texture.path)
+		free(cube->sprite.texture.path);
 }
 
 void	handle_error(char *string, t_cube *cube)
