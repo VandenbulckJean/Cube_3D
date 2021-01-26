@@ -2,6 +2,10 @@ NAME			= cube_3d
 
 SRCS_LIST		= \
 					main.c \
+					screenshot.c \
+					check_arguments.c \
+					map_parsing.c \
+					color_parsing.c \
 					exit.c \
 					utils.c \
 					parsing.c \

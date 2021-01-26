@@ -8,7 +8,7 @@ int		count_sprites(t_cube *cube)
 
 	y = 0;
 	i = 0;
-	while (y < cube->map.line)
+	while (cube->map.map[y] != NULL)
 	{
 		x = 0;
 		while (cube->map.map[y][x])
@@ -97,7 +97,7 @@ void	initialise_sprites(t_cube *cube)
 		handle_error("can't malloc sprites", cube);
 	if (!(cube->sprite.order = malloc(sizeof(int) * cube->sprite.amount)))
 		handle_error("can't malloc sprites order", cube);
-	while (y < cube->map.line)
+	while (cube->map.map[y])
 	{
 		x = 0;
 		while (cube->map.map[y][x])

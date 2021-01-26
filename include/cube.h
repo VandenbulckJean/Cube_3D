@@ -17,12 +17,14 @@ typedef	struct		s_color
 	int				r;
 	int				g;
 	int				b;
+	int				line;
 }					t_color;
 
 typedef	struct		s_window
 {
 	int				x_res;
 	int				y_res;
+	int				res_line;
 	void			*ptr;
 }					t_window;
 
@@ -108,7 +110,6 @@ typedef struct		s_map
 {
 	char 			**map;
 	t_vecteur		pos;
-	int				line;
 }					t_map;
 
 typedef struct		s_cube
@@ -125,16 +126,16 @@ typedef struct		s_cube
 	t_map			map;
 	t_sprite		sprite;
 	t_cam			cam;
-	t_img			current_img;
 	t_img			next_img;
 	t_keyboard		event;
 }					t_cube;
 
 //utils
 void				handle_error(char *string, t_cube *cube);
+void				atoi_cube(char *str, int *i, int *result);
+int					check_if_number(char *str, int i);
+int					is_empty_line(char *str);
 int					ft_samestr(char *s1, char *s2);
-int					atoi_cube(char *str, int *i, int *result);
-int					is_correct_path_char(char c);
 int					is_map_line(char *str);
 void				set_pixel_color(t_cube *cube, int pixelpos, t_color color);
 void				set_samepixelcolor(t_cube *cube, int pixelpos, t_texture *texture);
@@ -142,15 +143,16 @@ void				draw_wall_texture(t_cube *cube);
 int					is_space(char c);
 
 //checks
-
-void				check_resolution(char *str, t_cube *cube, int i);
-void				check_arguments(int argc, char*argv[], t_cube *cube);
-void				check_color_value(char *str, t_color color, int i, char *error);
-void				check_texture(t_texture texture, char *error);
+void				check_env_data(t_cube *cube);
+void				check_arguments(int argc, char*argv[], char **filename);
+int					check_map(char **map);
 
 //parsing
 
-void				parsing_file(t_cube *cube);
+void				parsing_env_data(t_cube *cube);
+void				get_color_floor(char *str, t_cube *cube);
+void				get_color_ceiling(char *str, t_cube *cube);
+void				parsing_map(t_cube *cube);
 
 //Raycasting
 void				get_object_limits(t_cube *cube);
@@ -162,6 +164,7 @@ void				get_wall_hit_x(t_cube *cube);
 
 //init
 void				initialisation(t_cube *cube);
+void				init_values_parsing(t_cube *cube);
 
 //event
 void				event_loop(t_cube *cube);
@@ -174,6 +177,14 @@ void				strafleft(t_cube *cube);
 void				strafright(t_cube *cube);
 
 //sprite
-void	initialise_sprites(t_cube *cube);
-void	do_sprites(t_cube *cube);
+void				initialise_sprites(t_cube *cube);
+void				do_sprites(t_cube *cube);
+
+//exit
+void				print_error_exit(char *error);
+void				handle_error_parsing(char * error, t_cube *cube);
+void				handle_missing_color(char *missingcolors, char *colorname, t_cube *cube);
+void				free_parsing(t_cube *cube);
+
+void			make_bmp(t_cube *cube);
 #endif
