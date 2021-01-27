@@ -1,17 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_functions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 14:50:39 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 14:50:40 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
 void	check_resolution(t_cube *cube)
 {
 	int x;
 	int y;
-	
+
 	if (!(cube->wind.res_line))
 		handle_error_parsing("Window resolution line missing", cube);
 	mlx_get_screen_size(cube->ptr, &x, &y);
 	if (cube->wind.x_res < 1)
-		handle_error_parsing("the window width must be a positive number", cube);
+		handle_error_parsing("the window width must be a positive number",
+		cube);
 	if (cube->wind.y_res < 1)
-		handle_error_parsing("the window height must be a positive number", cube);
+		handle_error_parsing("the window height must be a positive number",
+		cube);
 	if (cube->wind.x_res > x)
 		cube->wind.x_res = x;
 	if (cube->wind.y_res > y)
@@ -22,13 +36,15 @@ void	check_color_value(t_color color, char *colorname, t_cube *cube)
 {
 	if (color.r > 255 || color.r < 0)
 	{
-		ft_printf("Error: %s red color must be a number between 0 et 255.\n", colorname);
+		ft_printf("Error: %s red color must be a number between 0 et 255.\n",
+		colorname);
 		free_parsing(cube);
 		exit(EXIT_FAILURE);
 	}
 	if (color.g > 255 || color.g < 0)
 	{
-		ft_printf("Error: %s green color must be a number between 0 et 255.\n", colorname);
+		ft_printf("Error: %s green color must be a number between 0 et 255.\n",
+		colorname);
 		free_parsing(cube);
 		exit(EXIT_FAILURE);
 	}
