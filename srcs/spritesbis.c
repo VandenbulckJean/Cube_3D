@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spritesbis.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 16:49:48 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 16:49:49 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
 static void		define_sprite_pos(t_cube *cube)
@@ -37,17 +49,20 @@ void			initialise_sprites(t_cube *cube)
 	define_sprite_pos(cube);
 }
 
-int		is_pixel_black(t_texture texture)
+int				is_pixel_black(t_texture texture)
 {
 	int pixelpos;
 
-	pixelpos = texture.hitx * texture.img.bpp / 8 + texture.img.size_line * (int)texture.hity;
-	if (texture.img.address[pixelpos] == 0 && texture.img.address[pixelpos + 1] == 0 && texture.img.address[pixelpos + 2] == 0)
+	pixelpos = texture.hitx * texture.img.bpp
+	/ 8 + texture.img.size_line * (int)texture.hity;
+	if (texture.img.address[pixelpos] == 0 &&
+	texture.img.address[pixelpos + 1] == 0 &&
+	texture.img.address[pixelpos + 2] == 0)
 		return (1);
 	return (0);
 }
 
-int		count_sprites(t_cube *cube)
+int				count_sprites(t_cube *cube)
 {
 	int	x;
 	int	y;
@@ -69,7 +84,7 @@ int		count_sprites(t_cube *cube)
 	return (i);
 }
 
-void	ord_sprites(t_cube *cube)
+void			ord_sprites(t_cube *cube)
 {
 	int			tmp;
 	int			i;
@@ -82,7 +97,8 @@ void	ord_sprites(t_cube *cube)
 		i = 1;
 		while (i < cube->sprite.amount)
 		{
-			if (is_first_closer(cube->sprite.tab[cube->sprite.order[i - 1]], cube->sprite.tab[cube->sprite.order[i]], cube->cam.pos))
+			if (is_first_closer(cube->sprite.tab[cube->sprite.order[i - 1]],
+			cube->sprite.tab[cube->sprite.order[i]], cube->cam.pos))
 			{
 				tmp = cube->sprite.order[i];
 				cube->sprite.order[i] = cube->sprite.order[i - 1];
