@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:15:30 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 17:15:34 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:16:25 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void		get_resolution_bis(char *str, t_cube *cube, int i)
 {
 	while (str[i])
 		if (!(is_space(str[i++])))
-			handle_error_parsing("Resolution line must only contain height and width", cube);
+			handle_error_parsing(
+			"Resolution line must only contain height and width", cube);
 	if (!(cube->cam.distbuffer = malloc(sizeof(double) * cube->wind.x_res)))
 		handle_error_parsing("can't malloc distance buffer", cube);
 }
@@ -30,13 +31,16 @@ static void		get_resolution(char *str, t_cube *cube)
 	while (str[i] && !(isnumber(str[i])) && str[i] != '-')
 	{
 		if (!(is_space(str[i++])))
-			handle_error_parsing("Resolution line must only contain height and width", cube);
+			handle_error_parsing(
+			"Resolution line must only contain height and width", cube);
 	}
 	if (check_if_number(str, i))
-		handle_error_parsing("Please enter height and width for window.\nBoth being positive entire numbers", cube);
+		handle_error_parsing(
+		"Please enter height and width for window.\nBoth being positive entire numbers", cube);
 	atoi_cube(str, &i, &cube->wind.x_res);
 	if (check_if_number(str, i))
-		handle_error_parsing("Please enter height for window. It must be a positive entire number", cube);
+		handle_error_parsing(
+		"Please enter height for window. It must be a positive entire number", cube);
 	atoi_cube(str, &i, &cube->wind.y_res);
 	get_resolution_bis(str, cube, i);
 }
@@ -51,7 +55,7 @@ static void		get_path(char *str, t_texture *texture)
 	texture->path = ft_strdup(str + i);
 }
 
-static void			parsing_data(t_cube *cube, char *filedata)
+static void		parsing_data(t_cube *cube, char *filedata)
 {
 	if (filedata[0] == 'R' && is_space(filedata[1]))
 		get_resolution(filedata, cube);
