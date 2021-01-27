@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:18:35 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 15:18:57 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:25:03 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int					is_map_closed(int y, int x, char **map)
 		return (0);
 	if (!(isinstr("012NSEW", map[y - 1][x])))
 		return (0);
-	if (!(isinstr("012NSEW", map[y - 1][x])))
+	if (!(isinstr("012NSEW", map[y + 1][x])))
 		return (0);
 	if (!(isinstr("012NSEW", map[y][x - 1])))
 		return (0);
