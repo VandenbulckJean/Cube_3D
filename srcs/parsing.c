@@ -1,4 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 17:15:30 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 17:15:34 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
+
+static void		get_resolution_bis(char *str, t_cube *cube, int i)
+{
+	while (str[i])
+		if (!(is_space(str[i++])))
+			handle_error_parsing("Resolution line must only contain height and width", cube);
+	if (!(cube->cam.distbuffer = malloc(sizeof(double) * cube->wind.x_res)))
+		handle_error_parsing("can't malloc distance buffer", cube);
+}
 
 static void		get_resolution(char *str, t_cube *cube)
 {
@@ -17,11 +38,7 @@ static void		get_resolution(char *str, t_cube *cube)
 	if (check_if_number(str, i))
 		handle_error_parsing("Please enter height for window. It must be a positive entire number", cube);
 	atoi_cube(str, &i, &cube->wind.y_res);
-	while (str[i])
-		if (str[i++] != ' ')
-			handle_error_parsing("Resolution line must only contain height and width", cube);
-	if (!(cube->cam.distbuffer = malloc(sizeof(double) * cube->wind.x_res)))
-		handle_error_parsing("can't malloc distance buffer", cube);
+	get_resolution_bis(str, cube, i);
 }
 
 static void		get_path(char *str, t_texture *texture)
@@ -55,7 +72,7 @@ static void			parsing_data(t_cube *cube, char *filedata)
 	else
 	{
 		if (!(is_empty_line(filedata)))
-			handle_error_parsing(".cub file contain unreadable line", cube);	
+			handle_error_parsing(".cub file contain unreadable line", cube);
 	}
 }
 
