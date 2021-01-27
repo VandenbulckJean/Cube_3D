@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parsingbis.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 15:18:35 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 15:18:36 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
-int			is_map_closed(int y, int x, char **map)
+int					is_map_closed(int y, int x, char **map)
 {
 	if (map[y + 1] == NULL)
 		return (0);
@@ -14,7 +26,7 @@ int			is_map_closed(int y, int x, char **map)
 		return (0);
 	if (y == 0)
 		return (0);
-	
+
 	if (!(isinstr("012NSEW", map[y - 1][x])))
 		return (0);
 	if (!(isinstr("012NSEW", map[y - 1][x])))
@@ -26,7 +38,7 @@ int			is_map_closed(int y, int x, char **map)
 	return (1);
 }
 
-int			check_map(char **map)
+int					check_map(char **map)
 {
 	int x;
 	int y;
@@ -65,7 +77,7 @@ static void			get_pos_bis(t_cube *cube, char c)
 	}
 }
 
-void			get_pos(t_cube *cube, int x, int y, char c)
+void				get_pos(t_cube *cube, int x, int y, char c)
 {
 	if (cube->cam.pos.x != -1 || cube->cam.pos.y != -1)
 		handle_error_parsing("There can be only one starting point", cube);
