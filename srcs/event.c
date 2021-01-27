@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 16:30:15 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 16:30:16 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
-int	check_event(t_cube *cube)
+int		check_event(t_cube *cube)
 {
 	if (cube->event.right_arow_pressed && cube->event.w_pressed)
 	{
@@ -21,7 +33,7 @@ int	check_event(t_cube *cube)
 	return (1);
 }
 
-int	do_on_press_event(int pressed_key, t_cube *cube)
+int		do_on_press_event(int pressed_key, t_cube *cube)
 {
 	if (pressed_key == 13)
 		cube->event.w_pressed = 1;
@@ -38,13 +50,13 @@ int	do_on_press_event(int pressed_key, t_cube *cube)
 	return (1);
 }
 
-int	do_on_cross_release_event(t_cube *cube)
+int		do_on_cross_release_event(t_cube *cube)
 {
 	handle_exit(cube);
 	return (1);
 }
 
-int do_on_release_event(int pressed_key, t_cube *cube)
+int		do_on_release_event(int pressed_key, t_cube *cube)
 {
 	if (pressed_key == 53 || pressed_key == 17)
 		handle_exit(cube);
