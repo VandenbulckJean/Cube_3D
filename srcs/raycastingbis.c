@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycastingbis.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 16:48:03 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 16:48:04 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
 void	get_object_limits(t_cube *cube)
 {
-	cube->cam.objectheight = (int)((double)cube->wind.y_res / cube->cam.walldist);
+	cube->cam.objectheight = (int)((double)cube->wind.y_res
+	/ cube->cam.walldist);
 	cube->cam.objectstart = -cube->cam.objectheight / 2 + cube->wind.y_res / 2;
 	if (cube->cam.objectstart < 0)
 		cube->cam.objectstart = 0;
@@ -14,9 +27,10 @@ void	get_object_limits(t_cube *cube)
 void	get_texture_hit_data(t_cube *cube, t_texture *texture)
 {
 	texture->hitx = (int)(cube->cam.wallhitx * (double)texture->width);
-	texture->hitx = texture->width - texture->hitx- 1;
+	texture->hitx = texture->width - texture->hitx - 1;
 	texture->step = 1.0 * (double)texture->height / cube->cam.objectheight;
-	texture->hity = (cube->cam.objectstart - cube->wind.y_res / 2 + cube->cam.objectheight / 2) * texture->step;
+	texture->hity = (cube->cam.objectstart - cube->wind.y_res
+	/ 2 + cube->cam.objectheight / 2) * texture->step;
 }
 
 void	get_textures_hit_data(t_cube *cube)
