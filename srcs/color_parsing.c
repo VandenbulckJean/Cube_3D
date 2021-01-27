@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_parsing.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 16:30:47 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 16:30:48 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
-int			getcolorvalue(char *str, t_color *color, char *colorname, t_cube *cube)
+int			getcolorvalue(char *str,
+t_color *color, char *colorname, t_cube *cube)
 {
 	int i;
 

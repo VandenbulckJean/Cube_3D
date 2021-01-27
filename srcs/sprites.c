@@ -36,7 +36,8 @@ void	sprite_drawing_bis(t_cube *cube)
 	while(y < cube->sprite.endy)
 	{
 		cube->sprite.texture.hity = ((((y) * 256 - cube->wind.y_res * 128 +
-		cube->sprite.height * 128) * cube->sprite.texture.height) / cube->sprite.height) / 256;
+		cube->sprite.height * 128) * cube->sprite.texture.height)
+		/ cube->sprite.height) / 256;
 		pixelpos = cube->sprite.stripe * cube->next_img.bpp / 8 + cube->next_img.size_line * y;
 		if (!(is_pixel_black(cube->sprite.texture)))
 			set_samepixelcolor(cube, pixelpos, &cube->sprite.texture);
@@ -48,8 +49,9 @@ void	sprite_draw(t_cube *cube)
 {
 	while (cube->sprite.stripe < cube->sprite.endx)
 	{
-		if (cube->sprite.transform.y > 0 && cube->sprite.stripe > 0 && cube->sprite.stripe <
-		cube->wind.x_res && cube->sprite.transform.y < cube->cam.distbuffer[cube->sprite.stripe])
+		if (cube->sprite.transform.y > 0 && cube->sprite.stripe> 0
+		&& cube->sprite.stripe < cube->wind.x_res &&
+		cube->sprite.transform.y < cube->cam.distbuffer[cube->sprite.stripe])
 			sprite_drawing_bis(cube);
 		cube->sprite.stripe++;
 	}
