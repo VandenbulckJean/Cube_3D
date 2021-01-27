@@ -1,11 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 14:45:30 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 14:45:31 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
 void	get_cam_values(t_cube *cube)
 {
 	cube->cam.hit = 0;
 	cube->cam.camx = 2 * cube->cam.p_stripe / (double)cube->wind.x_res - 1;
-	cube->cam.raydir.x = cube->cam.direction.x + cube->cam.plane.x * cube->cam.camx;
-	cube->cam.raydir.y = cube->cam.direction.y + cube->cam.plane.y * cube->cam.camx;
+	cube->cam.raydir.x = cube->cam.direction.x +
+	cube->cam.plane.x * cube->cam.camx;
+	cube->cam.raydir.y = cube->cam.direction.y +
+	cube->cam.plane.y * cube->cam.camx;
 	cube->map.pos.x = (int)cube->cam.pos.x;
 	cube->map.pos.y = (int)cube->cam.pos.y;
 	cube->cam.deltadist.x = fabs(1 / cube->cam.raydir.x);
@@ -17,22 +31,26 @@ void	get_side_dist(t_cube *cube)
 	if (cube->cam.raydir.x < 0)
 	{
 		cube->cam.step.x = -1;
-		cube->cam.sidedist.x = (cube->cam.pos.x - cube->map.pos.x) * cube->cam.deltadist.x;
+		cube->cam.sidedist.x = (cube->cam.pos.x
+		- cube->map.pos.x) * cube->cam.deltadist.x;
 	}
 	else
 	{
 		cube->cam.step.x = 1;
-		cube->cam.sidedist.x = (cube->map.pos.x + 1.0 - cube->cam.pos.x) * cube->cam.deltadist.x;
+		cube->cam.sidedist.x = (cube->map.pos.x
+		+ 1.0 - cube->cam.pos.x) * cube->cam.deltadist.x;
 	}
 	if (cube->cam.raydir.y < 0)
 	{
 		cube->cam.step.y = -1;
-		cube->cam.sidedist.y = (cube->cam.pos.y - cube->map.pos.y) * cube->cam.deltadist.y;
+		cube->cam.sidedist.y = (cube->cam.pos.y
+		- cube->map.pos.y) * cube->cam.deltadist.y;
 	}
 	else
 	{
 		cube->cam.step.y = 1;
-		cube->cam.sidedist.y = (cube->map.pos.y + 1.0 - cube->cam.pos.y) * cube->cam.deltadist.y;
+		cube->cam.sidedist.y = (cube->map.pos.y
+		+ 1.0 - cube->cam.pos.y) * cube->cam.deltadist.y;
 	}
 }
 
@@ -87,5 +105,6 @@ void	raycasting(t_cube *cube)
 		cube->cam.p_stripe++;
 	}
 	do_sprites(cube);
-	mlx_put_image_to_window(cube->ptr, cube->wind.ptr, cube->next_img.ptr, 0, 0);
+	mlx_put_image_to_window(cube->ptr,
+	cube->wind.ptr, cube->next_img.ptr, 0, 0);
 }
