@@ -141,6 +141,13 @@ void				set_pixel_color(t_cube *cube, int pixelpos, t_color color);
 void				set_samepixelcolor(t_cube *cube, int pixelpos, t_texture *texture);
 void				draw_wall_texture(t_cube *cube);
 int					is_space(char c);
+int					is_first_closer(t_vecteur s1, t_vecteur s2, t_vecteur pos);
+
+//sprites
+int					count_sprites(t_cube *cube);
+void				ord_sprites(t_cube *cube);
+int					is_pixel_black(t_texture texture);
+void				initialise_sprites(t_cube *cube);
 
 //checks
 void				check_env_data(t_cube *cube);
