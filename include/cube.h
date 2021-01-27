@@ -193,5 +193,5 @@ void				handle_error_parsing(char * error, t_cube *cube);
 void				handle_missing_color(char *missingcolors, char *colorname, t_cube *cube);
 void				free_parsing(t_cube *cube);
 
-void			make_bmp(t_cube *cube);
+void				make_bmp(t_cube *cube);
 #endif
