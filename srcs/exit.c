@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:57:08 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 16:57:09 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:11:28 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_error_exit(char *error)
 	exit(EXIT_FAILURE);
 }
 
-void	handle_error_parsing(char * error, t_cube *cube)
+void	handle_error_parsing(char *error, t_cube *cube)
 {
 	free_parsing(cube);
 	print_error_exit(error);

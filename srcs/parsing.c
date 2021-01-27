@@ -61,15 +61,15 @@ static void			parsing_data(t_cube *cube, char *filedata)
 
 void			parsing_env_data(t_cube *cube)
 {
-	char *filedata;
-	int fd;
-	int i;
-	int check;
+	char	*filedata;
+	int		fd;
+	int		i;
+	int		check;
 
 	i = 0;
 	if ((fd = open(cube->filename, O_RDONLY)) == -1)
 		handle_error_parsing("Can't open .cub file", cube);
-	while((check = get_next_line(fd, &filedata) != 2))
+	while ((check = get_next_line(fd, &filedata) != 2))
 	{
 		if (check == -1)
 			handle_error_parsing("get next line alloc", cube);
