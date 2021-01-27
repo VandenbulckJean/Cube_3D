@@ -69,16 +69,15 @@ static void			get_map_line(t_cube *cube, int *mapline)
 		handle_error_parsing("Can't read .cub file", cube);
 	while((check = get_next_line(fd, &filedata)))
 	{
-		while (is_map_line(filedata) && ft_strlen(filedata))
-		{
-			if (check == -1)
-				handle_error_parsing("get next line alloc", cube);
-			(*mapline)++;
-			free(filedata);
-			get_next_line(fd, &filedata);
-		}
 		if (check == -1)
 				handle_error_parsing("get next line alloc", cube);
+		if (is_map_line(filedata) && ft_strlen(filedata))
+			(*mapline)++;
+		if (check == 2 || (!(is_map_line(filedata)) && *mapline))
+		{
+			free(filedata);
+			break;
+		}
 		free(filedata);
 	}
 	close(fd);
@@ -108,16 +107,14 @@ void				parsing_map(t_cube *cube)
 		handle_error_parsing("Can't read .cub file", cube);
 	while((check = get_next_line(fd, &filedata)))
 	{
-		while (is_map_line(filedata) && ft_strlen(filedata))
-		{
-			if (check == -1)
-				handle_error_parsing("get next line alloc", cube);
-			cube->map.map[i++] = filedata;
-			check = get_next_line(fd, &filedata);
-		}
 		if (check == -1)
 				handle_error_parsing("get next line alloc", cube);
-		free(filedata);
+		if (is_map_line(filedata) && ft_strlen(filedata))
+			cube->map.map[i++] = filedata;
+		if (!(is_map_line(filedata)) && i)
+			free(filedata);
+		if (check == 2 || (!(is_map_line(filedata)) && i))
+			break;
 	}
 	close(fd);
 	get_nsew(cube);

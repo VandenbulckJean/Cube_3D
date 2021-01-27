@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:24:54 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/26 18:46:25 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/27 13:08:28 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		read_next_line(int fd, char **linebuffer)
 		if (newlinefound(*linebuffer))
 			return (1);
 	}
-	return (0);
+	return (2);
 }
 
 static char		*cutafternewline(char *linebuffer)
