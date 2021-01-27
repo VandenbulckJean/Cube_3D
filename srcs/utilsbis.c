@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilsbis.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 16:16:45 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 16:16:46 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
-int ft_samestr(char *s1, char *s2)
+int			ft_samestr(char *s1, char *s2)
 {
 	int i;
 
@@ -29,24 +41,29 @@ int			is_map_line(char *str)
 	return (1);
 }
 
-void	set_pixel_color(t_cube *cube, int pixelpos, t_color color)
+void		set_pixel_color(t_cube *cube, int pixelpos, t_color color)
 {
 	cube->next_img.address[pixelpos] = color.b;
 	cube->next_img.address[pixelpos + 1] = color.g;
 	cube->next_img.address[pixelpos + 2] = color.r;
 }
 
-void	set_samepixelcolor(t_cube *cube, int pixelpos, t_texture *texture)
+void		set_samepixelcolor(t_cube *cube, int pixelpos, t_texture *texture)
 {
 	int pixelpos_texture;
+
 	texture->hity += texture->step;
-	pixelpos_texture = texture->hitx * texture->img.bpp / 8 + texture->img.size_line * (int)texture->hity;
-	cube->next_img.address[pixelpos] = texture->img.address[pixelpos_texture];
-	cube->next_img.address[pixelpos + 1] = texture->img.address[pixelpos_texture + 1];
-	cube->next_img.address[pixelpos + 2] = texture->img.address[pixelpos_texture + 2];
+	pixelpos_texture = texture->hitx * texture->img.bpp
+	/ 8 + texture->img.size_line * (int)texture->hity;
+	cube->next_img.address[pixelpos] =
+	texture->img.address[pixelpos_texture];
+	cube->next_img.address[pixelpos + 1] =
+	texture->img.address[pixelpos_texture + 1];
+	cube->next_img.address[pixelpos + 2] =
+	texture->img.address[pixelpos_texture + 2];
 }
 
-void	draw_wall_texture(t_cube *cube)
+void		draw_wall_texture(t_cube *cube)
 {
 	int pixelpos;
 	int i;
