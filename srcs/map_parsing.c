@@ -1,41 +1,5 @@
 #include "../include/cube.h"
 
-void			get_pos(t_cube *cube, int x, int y, char c)
-{
-	if (cube->cam.pos.x != -1 || cube->cam.pos.y != -1)
-		handle_error_parsing("There can be only one starting point", cube);
-	cube->cam.pos.x = (double)x + 0.5;
-	cube->cam.pos.y = (double)y + 0.5;
-	if (c == 'N')
-	{
-		cube->cam.direction.x = 0;
-		cube->cam.direction.y = -1;
-		cube->cam.plane.x = 0.66;
-		cube->cam.plane.y = 0;
-	}
-	if (c == 'S')
-	{
-		cube->cam.direction.x = 0;
-		cube->cam.direction.y = 1;
-		cube->cam.plane.x = -0.66;
-		cube->cam.plane.y = 0;
-	}
-	if (c == 'E')
-	{
-		cube->cam.direction.x = 1;
-		cube->cam.direction.y = 0;
-		cube->cam.plane.x = 0;
-		cube->cam.plane.y = 0.66;
-	}
-	if (c == 'W')
-	{
-		cube->cam.direction.x = -1;
-		cube->cam.direction.y = 0;
-		cube->cam.plane.x = 0;
-		cube->cam.plane.y = -0.66;
-	}
-}
-
 void			get_nsew(t_cube *cube)
 {
 	int y;
@@ -44,7 +8,7 @@ void			get_nsew(t_cube *cube)
 	y = 0;
 	cube->cam.pos.x = -1;
 	cube->cam.pos.y = -1;
-	while(cube->map.map[y])
+	while (cube->map.map[y])
 	{
 		x = 0;
 		while (cube->map.map[y][x])
@@ -61,22 +25,22 @@ void			get_nsew(t_cube *cube)
 
 static void			get_map_line(t_cube *cube, int *mapline)
 {
-	int fd;
-	char *filedata;
-	int check;
+	int		fd;
+	char	*filedata;
+	int		check;
 
 	if ((fd = open(cube->filename, O_RDONLY)) == -1)
 		handle_error_parsing("Can't read .cub file", cube);
-	while((check = get_next_line(fd, &filedata)))
+	while ((check = get_next_line(fd, &filedata)))
 	{
 		if (check == -1)
-				handle_error_parsing("get next line alloc", cube);
+			handle_error_parsing("get next line alloc", cube);
 		if (is_map_line(filedata) && ft_strlen(filedata))
 			(*mapline)++;
 		if (check == 2 || (!(is_map_line(filedata)) && *mapline))
 		{
 			free(filedata);
-			break;
+			break ;
 		}
 		free(filedata);
 	}
@@ -105,10 +69,10 @@ void				parsing_map(t_cube *cube)
 	malloc_map(cube);
 	if ((fd = open(cube->filename, O_RDONLY)) == -1)
 		handle_error_parsing("Can't read .cub file", cube);
-	while((check = get_next_line(fd, &filedata)))
+	while ((check = get_next_line(fd, &filedata)))
 	{
 		if (check == -1)
-				handle_error_parsing("get next line alloc", cube);
+			handle_error_parsing("get next line alloc", cube);
 		if (is_map_line(filedata) && ft_strlen(filedata))
 			cube->map.map[i++] = filedata;
 		if (!(is_map_line(filedata)) && i)

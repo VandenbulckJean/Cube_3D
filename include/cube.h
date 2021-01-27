@@ -160,6 +160,7 @@ void				parsing_env_data(t_cube *cube);
 void				get_color_floor(char *str, t_cube *cube);
 void				get_color_ceiling(char *str, t_cube *cube);
 void				parsing_map(t_cube *cube);
+void				get_pos(t_cube *cube, int x, int y, char c);
 
 //Raycasting
 void				get_object_limits(t_cube *cube);

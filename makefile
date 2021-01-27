@@ -5,7 +5,7 @@ SRCS_LIST		= \
 					screenshot.c \
 					check_arguments.c \
 					map_parsing.c \
-					check_map.c \
+					map_parsingbis.c \
 					color_parsing.c \
 					exit.c \
 					utils.c \
