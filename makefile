@@ -17,6 +17,7 @@ SRCS_LIST		= \
 					raycasting.c \
 					raycastingbis.c \
 					movement.c \
+					movementbis.c \
 					sprites.c \
 					spritesbis.c
 

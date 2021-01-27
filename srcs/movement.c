@@ -39,29 +39,3 @@ void	strafright(t_cube *cube)
 	cube->event.d_pressed = 0;
 	raycasting(cube);
 }
-
-void	rotation_pov(t_cube *cube, int is_left)
-{
-	double buffdirx;
-	double buffplanex;
-
-	buffdirx = cube->cam.direction.x;
-	buffplanex = cube->cam.plane.x;
-	if (is_left)
-	{
-		cube->cam.direction.x = (buffdirx * cos(-Alpha)) - (cube->cam.direction.y * sin(-Alpha));
-		cube->cam.direction.y = (buffdirx * sin(-Alpha)) + (cube->cam.direction.y * cos(-Alpha));
-		cube->cam.plane.x = (buffplanex * cos(-Alpha)) - (cube->cam.plane.y * sin(-Alpha));
-		cube->cam.plane.y = (buffplanex * sin(-Alpha)) + (cube->cam.plane.y * cos(-Alpha));
-		cube->event.left_arrow_pressed = 0;
-	}
-	else
-	{
-		cube->cam.direction.x = (buffdirx * cos(Alpha)) - (cube->cam.direction.y * sin(Alpha));
-		cube->cam.direction.y = (buffdirx * sin(Alpha)) + (cube->cam.direction.y * cos(Alpha));
-		cube->cam.plane.x = (buffplanex * cos(Alpha)) - (cube->cam.plane.y * sin(Alpha));
-		cube->cam.plane.y = (buffplanex * sin(Alpha)) + (cube->cam.plane.y * cos(Alpha));
-		cube->event.right_arow_pressed = 0;
-	}
-	raycasting(cube);
-}

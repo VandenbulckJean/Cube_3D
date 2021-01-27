@@ -166,7 +166,6 @@ void				get_pos(t_cube *cube, int x, int y, char c);
 void				get_object_limits(t_cube *cube);
 void				draw_stripe(t_cube *cube);
 void				raycasting(t_cube *cube);
-void				rotation_pov(t_cube *cube, int is_left);
 void				get_wall_hit_x(t_cube *cube);
 
 //init
@@ -182,6 +181,8 @@ void				move_forward(t_cube *cube);
 void				move_backward(t_cube *cube);
 void				strafleft(t_cube *cube);
 void				strafright(t_cube *cube);
+void				rotation_right_pov(t_cube *cube);
+void				rotation_left_pov(t_cube *cube);
 
 //sprite
 void				initialise_sprites(t_cube *cube);

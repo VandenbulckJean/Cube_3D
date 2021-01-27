@@ -15,9 +15,9 @@ int	check_event(t_cube *cube)
 	if (cube->event.a_pressed)
 		strafleft(cube);
 	if (cube->event.right_arow_pressed)
-		rotation_pov(cube, 0);
+		rotation_right_pov(cube);
 	if (cube->event.left_arrow_pressed)
-		rotation_pov(cube, 1);
+		rotation_left_pov(cube);
 	return (1);
 }
 
