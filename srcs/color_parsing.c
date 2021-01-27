@@ -30,12 +30,14 @@ void		get_color_floor(char *str, t_cube *cube)
 	while (str[i] && !(isnumber(str[i])) && str[i] != '-')
 	{
 		if (!(is_space(str[i++])))
-			handle_error_parsing("Floor line must only contain red, green and blue values", cube);
+			handle_error_parsing(
+			"Floor line must only contain red, green and blue values", cube);
 	}
 	i = getcolorvalue(str, &cube->floor, "floor", cube);
 	while (str[i])
 		if (!(is_space(str[i++])))
-			handle_error_parsing("Floor line must only contain red, green and blue values", cube);
+			handle_error_parsing(
+			"Floor line must only contain red, green and blue values", cube);
 }
 
 void		get_color_ceiling(char *str, t_cube *cube)
@@ -47,10 +49,12 @@ void		get_color_ceiling(char *str, t_cube *cube)
 	while (str[i] && !(isnumber(str[i])) && str[i] != '-')
 	{
 		if (!(is_space(str[i++])))
-			handle_error_parsing("ceiling line must only contain red , reen and blue values", cube);
+			handle_error_parsing(
+			"ceiling line must only contain red , reen and blue values", cube);
 	}
 	i = getcolorvalue(str, &cube->ceiling, "ceiling", cube);
 	while (str[i])
 		if (!(is_space(str[i++])))
-			handle_error_parsing("Ceiling line must only contain red, green and blue values", cube);
+			handle_error_parsing(
+			"Ceiling line must only contain red, green and blue values", cube);
 }

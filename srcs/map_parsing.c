@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:24:15 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 16:24:16 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/27 16:27:46 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
-void			get_nsew(t_cube *cube)
+void				get_nsew(t_cube *cube)
 {
 	int y;
 	int x;

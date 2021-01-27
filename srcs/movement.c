@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/27 16:28:45 by jvanden-          #+#    #+#             */
+/*   Updated: 2021/01/27 16:28:46 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube.h"
 
 void	move_forward(t_cube *cube)
 {
 	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x +
 	cube->cam.direction.x * Speed + (cube->cam.direction.x
-	> 0 ? Glitchdist  : -Glitchdist))] != '1')
+	> 0 ? Glitchdist : -Glitchdist))] != '1')
 		cube->cam.pos.x += cube->cam.direction.x * Speed;
 	if (cube->map.map[(int)(cube->cam.pos.y + cube->cam.direction.y *
 	Speed + (cube->cam.direction.y > 0 ? Glitchdist :
@@ -18,7 +30,7 @@ void	move_backward(t_cube *cube)
 {
 	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x -
 	cube->cam.direction.x * Speed - (cube->cam.direction.x
-	> 0 ? Glitchdist  : -Glitchdist))] != '1')
+	> 0 ? Glitchdist : -Glitchdist))] != '1')
 		cube->cam.pos.x -= cube->cam.direction.x * Speed;
 	if (cube->map.map[(int)(cube->cam.pos.y - cube->cam.direction.y *
 	Speed - (cube->cam.direction.y > 0 ? Glitchdist :
@@ -32,7 +44,7 @@ void	strafleft(t_cube *cube)
 {
 	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x +
 	cube->cam.direction.y * Speed + (cube->cam.direction.y >
-	0 ? Glitchdist  : -Glitchdist))] != '1')
+	0 ? Glitchdist : -Glitchdist))] != '1')
 		cube->cam.pos.x += cube->cam.direction.y * Speed;
 	if (cube->map.map[(int)(cube->cam.pos.y - cube->cam.direction.x *
 	Speed - (cube->cam.direction.x > 0 ? Glitchdist :
@@ -46,10 +58,10 @@ void	strafright(t_cube *cube)
 {
 	if (cube->map.map[(int)cube->cam.pos.y][(int)(cube->cam.pos.x -
 	cube->cam.direction.y * Speed - (cube->cam.direction.y
-	> 0 ? Glitchdist  : -Glitchdist))] != '1')
+	> 0 ? Glitchdist : -Glitchdist))] != '1')
 		cube->cam.pos.x -= cube->cam.direction.y * Speed;
 	if (cube->map.map[(int)(cube->cam.pos.y + cube->cam.direction.x *
-	Speed + (cube->cam.direction.x > 0 ? Glitchdist : 
+	Speed + (cube->cam.direction.x > 0 ? Glitchdist :
 	-Glitchdist))][(int)cube->cam.pos.x] != '1')
 		cube->cam.pos.y += cube->cam.direction.x * Speed;
 	cube->event.d_pressed = 0;
