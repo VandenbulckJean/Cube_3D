@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 17:15:30 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 17:16:25 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:17:23 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void		get_resolution(char *str, t_cube *cube)
 	}
 	if (check_if_number(str, i))
 		handle_error_parsing(
-		"Please enter height and width for window.\nBoth being positive entire numbers", cube);
+		"Please enter height and width for window", cube);
 	atoi_cube(str, &i, &cube->wind.x_res);
 	if (check_if_number(str, i))
 		handle_error_parsing(
-		"Please enter height for window. It must be a positive entire number", cube);
+		"Please enter height for window", cube);
 	atoi_cube(str, &i, &cube->wind.y_res);
 	get_resolution_bis(str, cube, i);
 }
