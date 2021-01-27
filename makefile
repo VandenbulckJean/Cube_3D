@@ -8,6 +8,7 @@ SRCS_LIST		= \
 					map_parsingbis.c \
 					color_parsing.c \
 					exit.c \
+					exitbis.c \
 					utils.c \
 					utilsbis.c \
 					parsing.c \

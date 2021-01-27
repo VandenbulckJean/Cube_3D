@@ -131,7 +131,6 @@ typedef struct		s_cube
 }					t_cube;
 
 //utils
-void				handle_error(char *string, t_cube *cube);
 void				atoi_cube(char *str, int *i, int *result);
 int					check_if_number(char *str, int i);
 int					is_empty_line(char *str);
@@ -191,8 +190,14 @@ void				do_sprites(t_cube *cube);
 //exit
 void				print_error_exit(char *error);
 void				handle_error_parsing(char * error, t_cube *cube);
+void				handle_error(char *string, t_cube *cube);
 void				handle_missing_color(char *missingcolors, char *colorname, t_cube *cube);
 void				free_parsing(t_cube *cube);
+void				destroy_images(t_cube *cube);
+void				free_motor_variables(t_cube *cube);
+void				destroy_map(t_cube *cube);
+
+
 
 void				make_bmp(t_cube *cube);
 #endif
