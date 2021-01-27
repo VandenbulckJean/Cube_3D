@@ -42,9 +42,11 @@ void	get_textures_hit_data(t_cube *cube)
 void	get_wall_hit_x(t_cube *cube)
 {
 	if (cube->cam.side == 0)
-		cube->cam.wallhitx = cube->cam.pos.y + cube->cam.walldist * cube->cam.raydir.y;
+		cube->cam.wallhitx = cube->cam.pos.y +
+		cube->cam.walldist * cube->cam.raydir.y;
 	else
-		cube->cam.wallhitx = cube->cam.pos.x + cube->cam.walldist * cube->cam.raydir.x;
+		cube->cam.wallhitx = cube->cam.pos.x +
+		cube->cam.walldist * cube->cam.raydir.x;
 	cube->cam.wallhitx -= floor(cube->cam.wallhitx);
 	get_textures_hit_data(cube);
 }
@@ -57,7 +59,8 @@ void	draw_stripe(t_cube *cube)
 	i = 0;
 	while (i < cube->cam.objectstart)
 	{
-		pixelpos = cube->cam.p_stripe * cube->next_img.bpp / 8 + cube->next_img.size_line * i;
+		pixelpos = cube->cam.p_stripe * cube->next_img.bpp
+		/ 8 + cube->next_img.size_line * i;
 		set_pixel_color(cube, pixelpos, cube->ceiling);
 		i++;
 	}
@@ -65,7 +68,8 @@ void	draw_stripe(t_cube *cube)
 	i = cube->cam.objectend;
 	while (i < cube->wind.y_res)
 	{
-		pixelpos = cube->cam.p_stripe * cube->next_img.bpp / 8 + cube->next_img.size_line * i;
+		pixelpos = cube->cam.p_stripe * cube->next_img.bpp
+		/ 8 + cube->next_img.size_line * i;
 		set_pixel_color(cube, pixelpos, cube->floor);
 		i++;
 	}
