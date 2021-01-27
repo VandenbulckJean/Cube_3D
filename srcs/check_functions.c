@@ -34,19 +34,21 @@ void	check_color_value(t_color color, char *colorname, t_cube *cube)
 	}
 	if (color.b > 255 || color.b < 0)
 	{
-		ft_printf("Error: %s blue color must be a number between 0 et 255.\n", colorname);
+		ft_printf("Error: %s blue color must be a number between 0 et 255.\n",
+		colorname);
 		free_parsing(cube);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	check_texture_path_given(t_texture texture, char *texturename, t_cube *cube)
+void	check_texture_path_given(t_texture texture,
+char *texturename, t_cube *cube)
 {
 	if (!(texture.path))
 	{
-			free_parsing(cube);
-			ft_printf("Error\nMissing %s texture path.", texturename);
-			exit(EXIT_FAILURE);
+		free_parsing(cube);
+		ft_printf("Error\nMissing %s texture path.", texturename);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -58,7 +60,8 @@ void	check_texture_path(t_texture texture, char *texturename, t_cube *cube)
 	i = 0;
 	check_texture_path_given(texture, texturename, cube);
 	len = ft_strlen(texture.path);
-	if (texture.path[len - 1] != 'm' || texture.path[len - 2] != 'p' || texture.path[len - 3] != 'x' || texture.path[len - 4] != '.')
+	if (texture.path[len - 1] != 'm' || texture.path[len - 2] != 'p'
+	|| texture.path[len - 3] != 'x' || texture.path[len - 4] != '.')
 		handle_error_parsing("please enter xpm file for every texture", cube);
 	while (texture.path[i])
 	{
