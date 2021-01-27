@@ -114,7 +114,7 @@ void				parsing_map(t_cube *cube)
 		if (!(is_map_line(filedata)) && i)
 			free(filedata);
 		if (check == 2 || (!(is_map_line(filedata)) && i))
-			break;
+			break ;
 	}
 	close(fd);
 	get_nsew(cube);
