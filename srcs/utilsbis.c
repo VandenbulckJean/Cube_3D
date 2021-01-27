@@ -57,9 +57,7 @@ void	draw_wall_texture(t_cube *cube)
 		pixelpos = cube->cam.p_stripe * cube->next_img.bpp
 		/ 8 + cube->next_img.size_line * i;
 		if (cube->cam.side == 0 && cube->cam.raydir.x < 0)
-		{
 			set_samepixelcolor(cube, pixelpos, &cube->west);
-		}
 		else if (cube->cam.side == 0 && cube->cam.raydir.x > 0)
 		{
 			set_samepixelcolor(cube, pixelpos, &cube->east);
