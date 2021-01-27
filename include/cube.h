@@ -167,7 +167,6 @@ void				get_object_limits(t_cube *cube);
 void				draw_stripe(t_cube *cube);
 void				raycasting(t_cube *cube);
 void				rotation_pov(t_cube *cube, int is_left);
-void				refreshscreen(t_cube *cube);
 void				get_wall_hit_x(t_cube *cube);
 
 //init

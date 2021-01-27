@@ -6,7 +6,7 @@ void	move_forward(t_cube *cube)
 			cube->cam.pos.x += cube->cam.direction.x * Speed;
 	if (cube->map.map[(int)(cube->cam.pos.y + cube->cam.direction.y * Speed + (cube->cam.direction.y > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
 			cube->cam.pos.y += cube->cam.direction.y * Speed;
-	refreshscreen(cube);
+	raycasting(cube);
 	cube->event.w_pressed = 0;
 }
 
@@ -17,7 +17,7 @@ void	move_backward(t_cube *cube)
 	if (cube->map.map[(int)(cube->cam.pos.y - cube->cam.direction.y * Speed - (cube->cam.direction.y > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
 			cube->cam.pos.y -= cube->cam.direction.y * Speed;
 	cube->event.s_pressed = 0;
-	refreshscreen(cube);
+	raycasting(cube);
 }
 
 void	strafleft(t_cube *cube)
@@ -27,7 +27,7 @@ void	strafleft(t_cube *cube)
 	if (cube->map.map[(int)(cube->cam.pos.y - cube->cam.direction.x * Speed - (cube->cam.direction.x > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
 			cube->cam.pos.y -= cube->cam.direction.x * Speed;
 	cube->event.a_pressed = 0;
-	refreshscreen(cube);
+	raycasting(cube);
 }
 
 void	strafright(t_cube *cube)
@@ -37,7 +37,7 @@ void	strafright(t_cube *cube)
 	if (cube->map.map[(int)(cube->cam.pos.y + cube->cam.direction.x * Speed + (cube->cam.direction.x > 0 ? Glitchdist : -Glitchdist))][(int)cube->cam.pos.x] != '1')
 			cube->cam.pos.y += cube->cam.direction.x * Speed;
 	cube->event.d_pressed = 0;
-	refreshscreen(cube);
+	raycasting(cube);
 }
 
 void	rotation_pov(t_cube *cube, int is_left)
@@ -63,5 +63,5 @@ void	rotation_pov(t_cube *cube, int is_left)
 		cube->cam.plane.y = (buffplanex * sin(Alpha)) + (cube->cam.plane.y * cos(Alpha));
 		cube->event.right_arow_pressed = 0;
 	}
-	refreshscreen(cube);
+	raycasting(cube);
 }

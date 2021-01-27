@@ -9,6 +9,7 @@ SRCS_LIST		= \
 					color_parsing.c \
 					exit.c \
 					utils.c \
+					utilsbis.c \
 					parsing.c \
 					check_functions.c \
 					event.c \
