@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:38:27 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 16:38:28 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/28 13:28:47 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,13 @@ void	sprite_drawing_bis(t_cube *cube)
 	int y;
 	int pixelpos;
 
-	cube->sprite.texture.hitx = (int)(256 * (cube->sprite.stripe -
-	(-cube->sprite.width / 2 + cube->sprite.centerstripe)) *
-	cube->sprite.texture.width / cube->sprite.width) / 256;
+	get_sprite_texture_hit(cube);
 	y = cube->sprite.starty;
 	while (y < cube->sprite.endy)
 	{
-		cube->sprite.texture.hity = ((((y) * 256 - cube->wind.y_res * 128 +
-		cube->sprite.height * 128) * cube->sprite.texture.height)
-		/ cube->sprite.height) / 256;
 		pixelpos = cube->sprite.stripe * cube->next_img.bpp
 		/ 8 + cube->next_img.size_line * y;
-		if (!(is_pixel_black(cube->sprite.texture)))
-			set_samepixelcolor(cube, pixelpos, &cube->sprite.texture);
+		set_samepixelcolor_sprite(cube, pixelpos, &cube->sprite.texture);
 		y++;
 	}
 }

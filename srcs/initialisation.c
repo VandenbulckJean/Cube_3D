@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:39:32 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 13:39:37 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/28 12:08:25 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	initit_motor_values(t_cube *cube)
 	cube->event.left_arrow_pressed = 0;
 	cube->sprite.order = NULL;
 	cube->sprite.tab = NULL;
+	cube->sprite.dist = NULL;
 }
 
 void	initialisation(t_cube *cube)

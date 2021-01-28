@@ -20,7 +20,8 @@ SRCS_LIST		= \
 					movement.c \
 					movementbis.c \
 					sprites.c \
-					spritesbis.c
+					spritesbis.c \
+					spritester.c
 
 SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 

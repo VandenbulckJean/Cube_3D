@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:39:34 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 16:39:35 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/28 13:26:16 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,4 @@ void		atoi_cube(char *str, int *i, int *result)
 	}
 	if (sign)
 		*result = -(*result);
-}
-
-int			is_first_closer(t_vecteur s1, t_vecteur s2, t_vecteur pos)
-{
-	double dist1;
-	double dist2;
-
-	dist1 = ((pos.x - s1.x) * (pos.x - s1.x) + (pos.y - s1.y) * (pos.y - s1.y));
-	dist2 = ((pos.x - s2.x) * (pos.x - s2.x) + (pos.y - s2.y) * (pos.y - s2.y));
-	if (dist1 < dist2)
-		return (1);
-	return (0);
 }

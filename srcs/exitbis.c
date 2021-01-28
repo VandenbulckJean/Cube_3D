@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 16:57:12 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 17:10:05 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/28 12:08:03 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	free_motor_variables(t_cube *cube)
 		free(cube->sprite.tab);
 	if (cube->sprite.order)
 		free(cube->sprite.order);
+	if (cube->sprite.dist)
+		free(cube->sprite.dist);
 }
 
 void	free_parsing(t_cube *cube)

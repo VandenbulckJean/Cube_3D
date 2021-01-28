@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:50:39 by jvanden-          #+#    #+#             */
-/*   Updated: 2021/01/27 14:50:40 by jvanden-         ###   ########.fr       */
+/*   Updated: 2021/01/28 13:31:01 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
-void	check_resolution(t_cube *cube)
+static void	check_resolution(t_cube *cube)
 {
 	int x;
 	int y;
@@ -32,7 +32,7 @@ void	check_resolution(t_cube *cube)
 		cube->wind.y_res = y;
 }
 
-void	check_color_value(t_color color, char *colorname, t_cube *cube)
+static void	check_color_value(t_color color, char *colorname, t_cube *cube)
 {
 	if (color.r > 255 || color.r < 0)
 	{
@@ -57,7 +57,7 @@ void	check_color_value(t_color color, char *colorname, t_cube *cube)
 	}
 }
 
-void	check_texture_path_given(t_texture texture,
+void		check_texture_path_given(t_texture texture,
 char *texturename, t_cube *cube)
 {
 	if (!(texture.path))
@@ -68,7 +68,8 @@ char *texturename, t_cube *cube)
 	}
 }
 
-void	check_texture_path(t_texture texture, char *texturename, t_cube *cube)
+static void	check_texture_path(t_texture texture,
+char *texturename, t_cube *cube)
 {
 	int i;
 	int len;
@@ -91,7 +92,7 @@ void	check_texture_path(t_texture texture, char *texturename, t_cube *cube)
 	}
 }
 
-void	check_env_data(t_cube *cube)
+void		check_env_data(t_cube *cube)
 {
 	check_resolution(cube);
 	if (!(cube->floor.line))
